@@ -757,10 +757,28 @@
         for i in 1:Nv, j in 1:Nv # zero-sum Gauge
             J[id(i, 1:Nq, Nq), id(j, 1:Nq, Nq)] .+= mean(J[id(i, 1:Nq, Nq), id(j, 1:Nq, Nq)]) .- mean(J[id(i, 1:Nq, Nq), id(j, 1:Nq, Nq)], dims=1) .- mean(J[id(i, 1:Nq, Nq), id(j, 1:Nq, Nq)], dims=2)
         end
+        
+        # Exclude gap character before computing norm
+        gap_idx = findfirst("-", alphabet)[1]
+        idx_to_exclude = [gap_idx + j*Nq for j in 0:(Nv-1)]
+        remaining_idx = setdiff(1:(Nq*Nv), idx_to_exclude)
+        J = J[remaining_idx, remaining_idx]
+        Nq = Nq - 1 
+        
         for i in 1:Nv, j in i+1:Nv # frobenius-norm
-            frobenius_matrix[i, j] = norm(J[id(i, 1:Nq, Nq) , id(j, 1:Nq, Nq)], 2)
+            val_ij = norm(J[id(i, 1:Nq, Nq) , id(j, 1:Nq, Nq)], 2)
+            val_ji = norm(J[id(j, 1:Nq, Nq) , id(i, 1:Nq, Nq)], 2)
+            @assert isapprox(val_ij, val_ji) "J is insymmetric at position $((i, j)), val_ij = $val_ij, val_ji = $val_ji"
+            frobenius_matrix[i, j] = val_ij
+            frobenius_matrix[j, i] = val_ji
         end
         
+        # Apply average product correction (APC)
+        row_sums = sum(frobenius_matrix, dims=2)
+        col_sums = sum(frobenius_matrix, dims=1)
+        total_sum = sum(row_sums)
+        frobenius_matrix .-= (row_sums * col_sums) ./ total_sum
+
         file_frobenius = open(path_frobenius, "w")
         for i in 1:Nv, j in i+1:Nv
             line = "$(i-1) $(j-1) $(frobenius_matrix[i, j])\n"

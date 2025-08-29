@@ -241,7 +241,9 @@
                     write(Cij_file, "$epoch (sweeps: $(epoch*nsweeps)) $pearsonCij\n"); flush(Cij_file)
                     # (showplot == true) ? plot_decorrelation(decorrelation_compare, decorrelation_back, outputpath) : nothing
                     plot_decorrelation(decorrelation_compare, decorrelation_back, outputpath, label, div(epoch, 2), nsweeps)
-                    if abs(ave1 - ave2)  / sqrt(sigma1 + sigma2) < 0.01
+                    conv_crit = abs(ave1 - ave2)  / sqrt(sigma1 + sigma2)
+                    println("convergence criterion: ", round(conv_crit, digits=4))
+                    if conv_crit < 0.01
                         t_mix = div(epoch, 2) 
                         println("Chains are at equilibrium! mixing time is: ", t_mix * nsweeps, " sweeps \n"); flush(stdout)
                         break

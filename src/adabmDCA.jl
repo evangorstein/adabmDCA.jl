@@ -13,6 +13,7 @@ module adabmDCA
     using Distributions
     using Plots
     using Printf
+    using DCAUtils
  
 
     # utils 
