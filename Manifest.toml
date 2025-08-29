@@ -2,7 +2,7 @@
 
 julia_version = "1.11.1"
 manifest_format = "2.0"
-project_hash = "a217c67c1fbcc585815075ba4736dcb75bacd7f5"
+project_hash = "9e25ad4bfa681d81cdeea828853dc37402a7871d"
 
 [[deps.AliasTables]]
 deps = ["PtrArrays", "Random"]
@@ -109,12 +109,6 @@ git-tree-sha1 = "439e35b0b36e2e5881738abc8857bd92ad6ff9a8"
 uuid = "d38c429a-6771-53c6-b99e-75d170b6e991"
 version = "0.6.3"
 
-[[deps.DCAUtils]]
-deps = ["FastaIO", "LinearAlgebra"]
-git-tree-sha1 = "434e75b436dfb1921224484adcbb809aeed93568"
-uuid = "e41cd558-3099-4f6e-a65d-5336857e40aa"
-version = "1.1.0"
-
 [[deps.DataAPI]]
 git-tree-sha1 = "abe83f3a2f1b857aac70ef8b269080af17764bbe"
 uuid = "9a962f9c-6df0-11e9-0e5d-c546b8b5ee8a"
@@ -213,12 +207,6 @@ git-tree-sha1 = "3a948313e7a41eb1db7a1e733e6335f17b4ab3c4"
 uuid = "b22a6f82-2f65-5046-a5b2-351ab43fb4e5"
 version = "7.1.1+0"
 
-[[deps.FastaIO]]
-deps = ["GZip"]
-git-tree-sha1 = "0133228b2353194fe0703d8cba182f832e11bb54"
-uuid = "a0c94c4b-ebed-5953-b5fc-82fe598ac79f"
-version = "1.1.0"
-
 [[deps.FileWatching]]
 uuid = "7b1f6079-737a-58dc-b8bc-7a2ca5c1b5ee"
 version = "1.11.0"
@@ -281,12 +269,6 @@ deps = ["Artifacts", "Bzip2_jll", "Cairo_jll", "FFMPEG_jll", "Fontconfig_jll", "
 git-tree-sha1 = "27299071cc29e409488ada41ec7643e0ab19091f"
 uuid = "d2c73de3-f751-5644-a686-071e5b155ba9"
 version = "0.73.17+0"
-
-[[deps.GZip]]
-deps = ["Libdl", "Zlib_jll"]
-git-tree-sha1 = "0085ccd5ec327c077ec5b91a5f937b759810ba62"
-uuid = "92fee26a-97fe-5a0c-ad85-20a5f3185b63"
-version = "0.6.2"
 
 [[deps.GettextRuntime_jll]]
 deps = ["Artifacts", "CompilerSupportLibraries_jll", "JLLWrappers", "Libdl", "Libiconv_jll"]
